@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://r6r8qtx3e71g"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_0h815"]
+[ext_resource type="PackedScene" uid="uid://b4wg8tu61kn02" path="res://scenes/user interface/ui.tscn" id="3_355pc"]
+[ext_resource type="PackedScene" uid="uid://fwl10inn7emn" path="res://scenes/player/player.tscn" id="4_hag62"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_0h815")
+
+[node name="Groud" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("4_hag62")]
+position = Vector2(636, 410)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("3_355pc")]
+
+[connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
